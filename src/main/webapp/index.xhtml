@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+  <ui:composition template="templates/common.xhtml">
+  	<ui:define name="title">#{msg['title.jsf']}</ui:define>
+  	<ui:define name="language">
+  	<h:form>
+  		<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+			valueChangeListener="#{language.countryLocaleCodeChanged}">
+   			<f:selectItems value="#{language.countriesInMap}" /> 
+   		</h:selectOneMenu>
+   	</h:form>
+  	</ui:define>
+  	<ui:define name="content">
+  		<h:form>
+  			<h:inputText value="#{testFrontendBean.inputValue}"/>
+  			<h:commandButton value="Normalize" action="#{testFrontendBean.normalizeInput}">
+  				<f:ajax render="@form" execute="@form"></f:ajax>
+  			</h:commandButton>
+  		</h:form>
+  	</ui:define>
+  </ui:composition>
+  </h:body>
+</html>
